@@ -1,0 +1,10 @@
+hostname=<hostname>
+primarynameserver=<dns server>
+dnsdomain=<domain name>
+ntpserver=<ntp server>
+timezone=<timezone>
+password=<password>
+ersapi=yes
+openapi=yes
+pxGrid=yes
+pxgrid_cloud=no
