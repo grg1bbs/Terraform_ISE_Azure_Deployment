@@ -1,5 +1,3 @@
-# *** WORK IN PROGRESS ***
-
 # Terraform_ISE_Azure_Deployment
 Terraform code for creating a lab environment in Azure using Cisco ISE 3.2 and the necessary Azure environment constructs (Resource Group, Virtual Network, Subnets, Security Group, Route Tables, etc) 
 
@@ -128,3 +126,13 @@ To tear down the entire environment, use 'terraform destroy' and the dependency 
 ```bash
 > terraform destroy
 ```
+
+### Example Azure Resource List
+The following image shows an example of the resources created in Azure.
+
+<img width="999" alt="terraform_resource_list" src="https://user-images.githubusercontent.com/103554967/226217885-e414795c-1ea8-4daa-9d4e-84aa5c6a1467.png">
+
+### Example Azure Resource Visualizer
+The following image shows an example of the resource relationships as illustrated by the Azure Resource Visualizer.
+
+<img width="681" alt="terraform_azure_resource_visualizer" src="https://user-images.githubusercontent.com/103554967/226218528-1b9305b4-d8c5-4da4-9e56-e6112e053745.png">
