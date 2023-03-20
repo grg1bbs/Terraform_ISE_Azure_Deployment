@@ -1,0 +1,40 @@
+object network obj-SrcNet
+ subnet 192.168.0.0 255.255.0.0
+object network obj-AzureNet
+ subnet 10.32.0.0 255.255.0.0
+!
+access-list acl-azure extended permit ip any4 10.32.0.0 255.255.0.0 
+access-list azure-filter extended permit ip 10.32.0.0 255.255.0.0 192.168.0.0 255.255.0.0 
+access-list azure-filter extended deny ip any any 
+!
+nat (inside,outside) source static obj-SrcNet obj-SrcNet destination static obj-AzureNet obj-AzureNet no-proxy-arp route-lookup
+!
+sysopt connection tcpmss 1379
+!
+crypto ikev2 policy 1
+ encryption aes-256
+ integrity sha256
+ group 14
+ prf sha256
+ lifetime seconds 86400
+!
+crypto ipsec ikev2 ipsec-proposal AES256
+ protocol esp encryption aes-256
+ protocol esp integrity sha-256
+!
+group-policy azure internal
+group-policy azure attributes
+ vpn-filter value azure-filter
+!
+tunnel-group <vpngw_public_ip> type ipsec-l2l
+tunnel-group <vpngw_public_ip> general-attributes
+ default-group-policy GroupPolicy_<vpngw_public_ip>
+tunnel-group <vpngw_public_ip> ipsec-attributes
+ ikev2 remote-authentication pre-shared-key ***
+ ikev2 local-authentication pre-shared-key ***
+!
+crypto map azure_vpn_map 1 match address acl-azure
+crypto map azure_vpn_map 1 set peer <vpngw_public_ip> 
+crypto map azure_vpn_map 1 set ikev2 ipsec-proposal AES256 AES192 AES 3DES DES
+crypto map azure_vpn_map interface outside
+
