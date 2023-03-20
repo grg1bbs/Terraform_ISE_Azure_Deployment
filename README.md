@@ -5,15 +5,22 @@ I built this code so that I could quickly spin up ISE nodes in Azure (they still
 The code for the ISE resources can be scaled up/down as needed and used for either non-production or production environments.
 
 This code was validated using:
- - ISE 3.2 AMI (ap-southeast-2 region) from the Azure Marketplace
- - Terraform version 1.3.5
- - Terraform azurerm provider version 3.0.2
+ - ISE 3.2 VM image (Australia East region) from the Azure Marketplace
+ - Terraform version 1.3.9
+ - Terraform azurerm provider version 3.48.0
  - (Site-to-Site VPN) Cisco ASA 5506-X (Security Plus license) running software version 9.16(3)23
  
  The following resources are created by this Terraform code:
-  - TBD
+  - Azure Resource Group
+  - Virtual Network
+  - Subnets and Route Tables for ISE and Virtual Network Gateway
+  - Security Group and Network Interface for ISE
+  - ISE Virtual Machine
+  - Public IP Addresses for ISE and Virtual Network Gateway
+  - Local Network Gateway
+  - Virtual Network Gateway
 
-#### Note: This code only deploys the individual standalone ISE nodes. It does not perform any operations to build the ISE cluster.
+#### Note: This code only deploys the individual standalone ISE node. It does not perform any operations to configure the ISE cluster.
   
 ## Pre-requisites
    - Terraform application installed
