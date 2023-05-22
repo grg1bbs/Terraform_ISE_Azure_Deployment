@@ -69,6 +69,6 @@ resource "azurerm_linux_virtual_machine" "ise32_az1" {
     offer     = "cisco-ise-virtual"
     publisher = "cisco"
     sku       = "cisco-ise_3_2"
-    version   = "3.2.0"
+    version   = "latest"
   }
 }
